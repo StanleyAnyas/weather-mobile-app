@@ -4,7 +4,6 @@ import { StyleSheet } from 'react-native';
 export const CurrentWeatherStyles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
       alignItems: 'center',
     },
     wrapper: {

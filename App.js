@@ -6,11 +6,7 @@ import ActivityIndicatorComponent from './src/components/ActivityIndicator';
 import { useGetWeather } from './src/hooks/useGetWeather';
 
 export default function App() {
-  const [weatherData, isLoading, errorMsg] = useGetWeather();
-
-  // console.log(weatherData);
-  // console.log(isLoading);
-  // console.log(errorMsg);
+  const [weatherData, isLoading] = useGetWeather();
   return (
     <NavigationContainer>
       <StatusBar barStyle="dark-content" />

@@ -13,6 +13,8 @@ const UpComingWeather = (props) => {
         <ImageBackground source={require("../../assets/sky.jpg")} resizeMode='cover' style={[backGroundImage.container]}>
             <View style={UpComingWeatherStyles.container}>
                 <FlatList
+                    ref={(ref) => { this.flatListRef = ref; }}
+                    initialNumToRender={ 7 }
                     data={ list }
                     renderItem={ ({ item }) => <RenderItems { ...item } /> }
                     keyExtractor={ (item) => item.dt_txt }
@@ -21,9 +23,10 @@ const UpComingWeather = (props) => {
         </ImageBackground>
     </SafeAreaView>
   );
-}
+};
 
 export default UpComingWeather;
+
 
 UpComingWeather.propTypes = {
     weatherData: PropTypes.object.isRequired,

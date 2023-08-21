@@ -7,9 +7,11 @@ import PropTypes from 'prop-types';
 
 const City = (props) => {
     const { weatherData } = props;
-    console.log(weatherData);
+    // console.log(weatherData);
     
-    const populationString = weatherData.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    let populationString = weatherData.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    populationString === "0" ? populationString = "N/A" : populationString;
+    populationString.concat(" people");
     // get the time from sunrise
     const sunrise_time = new Date(weatherData.sunrise * 1000).toLocaleTimeString(undefined, {
         hour: '2-digit',
