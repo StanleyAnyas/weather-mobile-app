@@ -59,4 +59,10 @@ export const weatherType = {
         iconColor: 'black',
         background: 'skyblue',
     },
+    BrokenClouds: {
+        iconName: 'cloud',
+        message: 'Broken Clouds',
+        iconColor: 'black',
+        background: 'skyblue',
+    },
 };

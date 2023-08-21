@@ -3,22 +3,35 @@ import React from "react";
 import { View, Text, SafeAreaView, ImageBackground } from "react-native";
 import { CityStyles } from '../../assets/styles/style';
 import IconText from "../components/IconText";
-// import { useNavigation } from '@react-navigation/native';
+import PropTypes from 'prop-types';
 
-const City = () => {
+const City = (props) => {
+    const { weatherData } = props;
+    console.log(weatherData);
+    
+    const populationString = weatherData.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // get the time from sunrise
+    const sunrise_time = new Date(weatherData.sunrise * 1000).toLocaleTimeString(undefined, {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+    const sunset_time = new Date(weatherData.sunset * 1000).toLocaleTimeString(undefined, {
+        hour: '2-digit',
+        minute: '2-digit',
+    });
     const { container, image, cityName, countryName, sunRiseWrapper, population, sunRiseText, sunSetText, populationNumber } = CityStyles;
     return (
         <SafeAreaView style={container}>
             <ImageBackground source={require('../../assets/city.jpg')} style={image}>
                 <View style={ {flex: 1}} >
-                    <Text style={cityName}>Helsinki</Text>
-                    <Text style={countryName}>Finland</Text>
+                    <Text style={cityName}> {weatherData.country} </Text>
+                    <Text style={countryName}> {weatherData.name} </Text>	
                     <View style={population}>
-                        <IconText IconName={"user"} IconColor={"red"} BodyText={"60000"} BodyStyle={populationNumber} />
+                        <IconText IconName={"user"} IconColor={"red"} BodyText={ populationString } BodyStyle={populationNumber} />
                     </View>
                     <View style={sunRiseWrapper}>
-                        <IconText IconName={"sunrise"} IconColor={"red"} BodyText={"9:43:21am"} BodyStyle={sunRiseText} />
-                        <IconText IconName={"sunset"} IconColor={"red"} BodyText={"18:30:44pm"} BodyStyle={sunSetText} />
+                        <IconText IconName={"sunrise"} IconColor={"red"} BodyText={ sunrise_time } BodyStyle={sunRiseText} />
+                        <IconText IconName={"sunset"} IconColor={"red"} BodyText={ sunset_time } BodyStyle={sunSetText} />
                     </View>
                 </View>
             </ImageBackground>
@@ -27,3 +40,7 @@ const City = () => {
 }
 
 export default City;
+
+City.propTypes = {
+    weatherData: PropTypes.object.isRequired,
+};

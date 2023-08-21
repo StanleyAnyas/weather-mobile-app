@@ -9,6 +9,15 @@ const RenderItems = (props) => {
     const { description } = weather[0];
     const { temp_min, temp_max } = main;
 
+    // change the temp to celsius
+    const temp_celsius = (main.temp - 273.15).toFixed(0);
+    const feels_like_celsius = (main.feels_like - 273.15).toFixed(2);
+    const temp_min_celsius = (main.temp_min - 273.15).toFixed(2);
+    const temp_max_celsius = (main.temp_max - 273.15).toFixed(0);
+
+    // minimize the date
+    const dt_txt_mini = dt_txt.split(' ')[0];
+
     const descriptionIcon = () => {
         switch (description) {
             case 'Cloudy':
@@ -25,11 +34,8 @@ const RenderItems = (props) => {
     return (
         <View style={container}>
             { descriptionIcon() }
-            <Text style={date}>{ dt_txt }</Text>
-            {/* <Text style={RenderItemsStyles.temp}>{ temp }</Text> */}
-            {/* <Text style={RenderItemsStyles.temp}>{ feels_like }</Text> */}
-            <Text style={temp}>{ temp_min }</Text>
-            <Text style={temp}>{ temp_max }</Text>
+            <Text style={date}>{ dt_txt_mini }</Text>
+            <Text style={temp}>{`${temp_celsius}°C`}</Text>
             <Text style={descrip}>{ description }</Text>
         </View>
     );

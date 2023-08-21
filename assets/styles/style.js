@@ -10,7 +10,7 @@ export const CurrentWeatherStyles = StyleSheet.create({
     wrapper: {
       flex: 1,
     },
-    temp: {
+    tempp: {
       fontSize: 40,
       color: 'black',
     },
